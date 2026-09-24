@@ -2933,4 +2933,6 @@ from sqlite3 import dump
 #         sql = f.read()
 #         cur.executescript(sql)
 
-print('изменения после коммита')
+# print('изменения после коммита')
+
+print('Hello world')
