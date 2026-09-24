@@ -2921,14 +2921,16 @@ from sqlite3 import dump
 #     img = cur.fetchone()['ava']
 #     write_ava('out.png', img) #вызыааем функцию
 
-import sqlite3
+# import sqlite3
+#
+# with sqlite3.connect('cars_new.db') as con:
+#     cur = con.cursor()
+#
+#     # with open('sql_dump.sql', 'w') as f:
+#     #     for sql in con.iterdump(): # восстанавливаем текущую базу данных
+#     #        f.write(sql)
+#     with open('sql_dump.sql', 'r') as f:
+#         sql = f.read()
+#         cur.executescript(sql)
 
-with sqlite3.connect('cars_new.db') as con:
-    cur = con.cursor()
-
-    # with open('sql_dump.sql', 'w') as f:
-    #     for sql in con.iterdump(): # восстанавливаем текущую базу данных
-    #        f.write(sql)
-    with open('sql_dump.sql', 'r') as f:
-        sql = f.read()
-        cur.executescript(sql)
+print('изменения после коммита')
