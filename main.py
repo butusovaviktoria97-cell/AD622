@@ -2937,4 +2937,78 @@ from sqlite3 import dump
 
 # print('Hello world')
 # print('Вносим изменения на другом рабочем месте для того же репозитория')
-print('Рабочий процесс')
+# print('Рабочий процесс')
+
+# lst = [5,2, [3,4]]
+# print(lst)
+
+# импортировали NumPy
+# import numpy as np # для обращения к NumPy дали псевдоним np
+# from numpy import dtypes
+
+# 1 вариант:
+# lst = [1, 2, 3, 4, 5]
+# arr = np.array(lst)
+# print(arr)
+
+# lst = [1, 2, 3, 4, 5]
+# print(lst * 2) # [1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
+
+# 2 вариант:
+# arr = np.array([1, 2, 3, 4, 5]) # через метод array создали массив NumPy из списка
+# print(arr)
+# # print(arr * 2) # [ 2  4  6  8 10]
+# #-------
+#
+# arr2 = np.array([[1, 2, 3, 11, 12, 13], [4, 5, 6, 14, 15, 16]]) # многомерный(двумерный) массив (выводится на разных строках)
+# print(arr2) #[[1 2 3]
+#             [4 5 6]]
+
+# print(arr2 * 2 ) #[[ 2  4  6] умножение на 2
+# #                 [ 8 10 12]]
+
+# кол-во измерений массива:
+# print(arr.ndim)
+# print(arr2.ndim)
+
+# кол-во строк и столбоцов
+# print(arr.shape)
+# print(arr2.shape) #
+
+# Общее кол-во элементов:
+# print(arr.size)
+# print(arr2.size)
+# print(len(arr2))
+
+# Обращаемся к элементу:
+# print(arr[3])
+# print(arr2[0][2])
+
+# print(arr2[0, 2])
+# print(arr2[0, :])
+# print(arr2[:, 0])  # взяли все данные из нулевого столбца
+
+# print(arr2[0,1:4:2]) # начиная с 1 индекса по 4 не включая его, берем каждое втрое число
+# print(arr2[1,0:-1:2])
+
+# arr2[0,0] = 50
+# print(arr2)
+
+# arr2[0, :] = [0,0,0,1,1,1]
+
+# zeros = np.zeros((3, 4), dtype='int32') # заполнили нулями
+# print(zeros)
+#
+# ones = np.ones((2,3)) # заполнили единицами
+# print(ones)
+
+
+# создать одномерный массив на 5 нулей
+# второй массив 3х4 (3 строчкии 4 значения в них из единиц):
+import numpy as np # для обращения к NumPy дали псевдоним np
+from numpy import dtypes
+
+zeros1 = np.zeros((5), dtype='int32')
+print(zeros1)
+ones1 = np.ones((3,4), dtype='int32')
+print(ones1)
