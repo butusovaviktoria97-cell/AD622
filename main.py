@@ -2942,6 +2942,8 @@ from sqlite3 import dump
 # lst = [5,2, [3,4]]
 # print(lst)
 
+
+#====================================================================
 # импортировали NumPy
 # import numpy as np # для обращения к NumPy дали псевдоним np
 # from numpy import dtypes
@@ -3005,10 +3007,320 @@ from sqlite3 import dump
 
 # создать одномерный массив на 5 нулей
 # второй массив 3х4 (3 строчкии 4 значения в них из единиц):
-import numpy as np # для обращения к NumPy дали псевдоним np
-from numpy import dtypes
+# import numpy as np # для обращения к NumPy дали псевдоним np
 
-zeros1 = np.zeros((5), dtype='int32')
-print(zeros1)
-ones1 = np.ones((3,4), dtype='int32')
-print(ones1)
+# zeros1 = np.zeros((5), dtype='int32')
+# print(zeros1)
+# ones1 = np.ones((3,4), dtype='int32')
+# print(ones1)
+#
+# mas = np.full((2,3), 5)
+# print(mas)
+
+# d = np.random.rand(3,2)
+# d = np.random.randint(-5,10, size=(3,4)) # рандом от -5 до 10
+# print(d)
+
+# d = np.linspace(0,10,5)
+# print(d)
+
+# d = np.arange(0,10,3) # от нуля до 10 не включая 10 с шагом 3
+# print(d)
+
+# arr = np.arange(1 , 13) # массив от 1 до 13не включая 13
+# print(arr)
+#
+# two = np.reshape(arr,(3,4))
+# print(two)
+
+#создание массивов:
+# arr1 = np.array([1,2,3])
+# arr2 = np.array([4,5,6])
+#
+# hstack = np.hstack((arr1,arr2)) # объединили массивы в строку
+# print(hstack)
+#
+# vstack = np.vstack((arr1,arr2)) # объединили массивы в столбцах
+# print(vstack)
+
+# arr1 = np.array([1,2,3, 4])
+# print(arr1)
+# print(arr1 +3)
+# print(arr1 - 2)
+# print(arr1 * 2)
+# print(arr1 ** 2)
+
+# a = np.array([[1,2],[3, 4]])
+# b = np.array([[2,2],[2, 2]])
+#
+# print(a + b) # кол-во элементов массива
+# # должно совпадать для математических операций
+# print(a * b)
+# print(a ** b)
+
+# a = np.array([[1,2,3],[4,5,6]])
+# print(a)
+
+# total = a.sum() # сумма всех элементов массива
+# print(total)
+#
+# col = a.sum(axis=0) # суммирует массивы по индексам
+# print(col)
+#
+#
+# row = a.sum(axis=1) # сумма в пределах строки(1 массива)
+# print(row)
+
+# mean_all = a.mean() # среднее ариф. всех элементов массива
+# print(mean_all)
+#
+# mean_0 = a.mean(axis=0) #  находит ср. ариф. по индексам(столбцам)
+# print(mean_0)
+#
+# mean_1= a.mean(axis=1) #  находит ср. ариф. по строке
+# print(mean_1)
+
+# min_all = a.min() # нашли минимальное значение
+# print(min_all)
+#
+# min_0 = a.min(axis=0) # нашли минимальное значение по столбцам
+# print(min_0)
+#
+# min_1 = a.min(axis=1) # нашли минимальное значение в пределах []
+# print(min_1)
+#
+# max_1 = a.max(axis=1) # нашли минимальное значение в пределах []
+# print(max_1)
+
+# arg_max = a.argmax()# индекс максимального числа
+# print(arg_max)
+#
+# arg_0 = a.argmax(axis=0)
+# print(arg_0)
+#
+# arg_1 = a.argmax(axis=1)
+# print(arg_1)
+
+# prod_all = a.prod()
+# print(prod_all)
+#
+# prod_0 = a.prod(axis = 0)
+# print(prod_0)
+#
+# prod_1 = a.prod(axis = 1)
+# print(prod_1)
+
+# a = np.array([5, 35, 10, 40, 10])
+# a = np.array([18, 20, 22, 20, 20])
+
+# var_all = a.var()
+# print(var_all)
+#
+# var_0 = a.var(axis =0)
+# print(var_0)
+#
+# var_1 = a.var(axis =1)
+# print(var_1) # дисперсия
+
+# arr1 = np.array([[30,40,35,500, 45, 32,38, 50]])
+# print(arr1)
+# print(np.median(arr1)) # медиана
+
+# arr = np.array([[1,2,3],[2,3,4],[3,4,5],[4,5,6]])
+# arr = np.array([2, 4, 4, 4, 6])
+# print(arr)
+# print(np.std(arr))
+
+#СДЕЛАТЬ АНАЛИЗ ДАННЫХ ПО ЗП СОТРУДНИКОВ:
+# salaries = np.array([50, 23, 60, 26, 19, 43, 26, 64, 60, 45, 26, 57, 54 ])
+# print(salaries)
+#
+# mean_salary = np.mean(salaries)
+# print(f'Средняя зарплата: {mean_salary:.2f}')
+#
+# max_salary = np.max(salaries)
+# min_salary = np.min(salaries)
+# print(f'Максимальная зарплата: {max_salary}')
+# print(f'Минимальная зарплата: {min_salary}')
+#
+# std_salary = np.std(salaries)
+# print(f'Стандартное отклонение зарплаты: {std_salary:.2f}')
+#
+# above_mean = salaries[salaries > mean_salary]
+# print(f'Зарплата выше среднего: {above_mean}')
+
+#======================================================
+# product_ids = np.array([101,102,103,104,105,106,107,108,109,110])
+# prices = np.array([10.99, 20.99, 15.49, 25.49, 5.99, 12.99, 7.99, 30.99, 18.99, 9.99])
+# quantities = np.array([100, 50, 75, 30, 200,120, 150, 20, 80, 110])
+# dates = np.array(['2026-07-01', '2026-07-02', '2026-07-03', '2026-07-04', '2026-07-05', '2026-07-06', '2026-07-07',
+#                   '2026-07-08', '2026-07-09', '2026-07-10'])
+# #Расчет общих продаж
+# total_sales = prices * quantities
+# print(f'Общий объем продаж: {total_sales}')
+#
+# total_sum = np.sum(total_sales)
+# print(f'Сумма выручки:{total_sum}')
+#
+# average_check = np.mean(total_sales)
+# print(f'Средний чек:{average_check}')
+#
+# best_product_index = np.argmax(total_sales)
+# wors_product_index = np.argmin(total_sales)
+#
+# print(f'Лучший товар (ID: {product_ids[best_product_index]}, '
+#       f'объем продаж {total_sales[best_product_index]}) ')
+#
+# print(f'Худший товар (ID: {product_ids[wors_product_index]}, '
+#       f'объем продаж {total_sales[wors_product_index]}) ')
+#======================================================
+
+#=======================================================
+
+# import pandas as pd
+
+# # series1 = pd.Series([10,20,30,40,50])
+# series1 = pd.Series((10,20,30,40,50))
+# print(series1)
+#
+# series2 = pd.Series({'b': 10,'a': 30, 'c':20})
+# print(series2)
+
+# series3 = pd.Series(15)
+# series3 = pd.Series(15, [3,8,4])
+# print(series3)
+#
+# age = [36,16,23]
+# names = ['Сергей', 'Роман', 'Вадим']
+# # series4 = pd.Series(age, index = names, name = 'age')
+# series4 = pd.Series(age, index = names)
+# series4.name = 'age'
+# print(series4)
+# # print(series4[['Роман', 'Вадим']])
+# print('размер серии:', len(series4))
+# print('размер серии: ', series4.size)
+
+# series = pd.Series([5, 3, 5, 4, 2, 3, 2, 2])
+#
+# unique_values = series.unique()
+# print('Уникальные значения', unique_values)
+#
+# value_counts = series.value_counts()
+# print('Количество значений в серии')
+# print(value_counts)
+
+# age = [36,16,23,29]
+# names = ['Сергей', 'Роман', 'Вадим', 'Виталий']
+# series = pd.Series(age, index = names)
+# print(series)
+#
+# elem = series.iloc[2] # чтобы получить доступ к элементу метки
+# print('\nОдин элемент по позиции: ', elem)
+#
+# subset = series.iloc[[0,2]]
+# print('\nНесколько элементов по позиции: ', elem)
+# print(subset)
+#
+# series = pd.Series([10,20,30,40,50, 60, 70, 80, 90, 100])
+# print(series)
+
+# print('Первые пять элемента: ')
+# print(series.head(5))
+#
+# print('Первые три элемента: ')
+# print(series.head(3))
+#
+# print('Последние пять элементов: ')
+# print(series.tail())
+#
+# print('Последние три элемента: ')
+# print(series.tail(3))
+
+# sample_data = series.sample(3) # случайные значения
+# print(sample_data)
+
+# grades = pd.Series([90,66,86,85,70], index=['Анна','Борис','Влад','Дарья','Елена'])
+# print(grades)
+#
+# # print(grades.nlargest(2, keep='first')) #выводит топ
+# # print(grades.nlargest(2, keep='last')) #выводит топ повторяющего последнего элемента
+# # print(grades.nlargest(2, keep='all')) #выводит топ повторяющего последнего элемента
+#
+# print(grades.nsmallest(3, 'first')) # 3 самых низших оценки
+# print(grades.nsmallest(3, 'last'))
+# print(grades.nsmallest(3, 'all'))
+
+import numpy as np
+# 1. Создайте массив чисел от 10 до 50 с шагом 5:
+# d = np.arange(10,50,5) # от нуля до 10 не включая 10 с шагом 3
+# print(d)
+# 
+# 2. Случайные числа: Создайте матрицу размером 3x4 со случайными целыми числами от 0 до 10.
+# Выведите ее форму (shape), размер (size) и тип данных (dtype)
+# matrix = np.random.randint(0, 11, size=(3, 4))
+# print(matrix)
+# print(matrix.shape)
+# print(matrix.size)
+# print(matrix.dtype)
+#
+# 3. Создайте двумерный массив 4х4. В первой строке заменить все элементы на нули
+# arr = np.arange(1, 17).reshape(4, 4)
+# # print(arr)
+# arr[0,:]=0
+# print(arr)
+#
+# 4. Создайте матрицу 3х3. Найдите сумму
+# всех элементов , а также среднее арифметическое отдельно по кадой строке и по каждому столбцу
+# arr = np.arange(4, 13).reshape(3, 3)
+# print(arr)
+# total = arr.sum() # сумма всех элементов
+# print(total)
+# mean_0 = arr.mean(axis=0) #  находит ср. ариф. по индексам(столбцам)
+# print(mean_0)
+#
+# mean_1= arr.mean(axis=1) #  находит ср. ариф. по строке
+# print(mean_1)
+#
+# 5.массив [8500, 12000, 4300, 9100,11500,15000,6000] в котором записано \
+# кол-во шагов за неделю(7 дней). найдите минимальное кол-во шагов, максимальное,
+# сумма всех шагов.
+# arr = np.array([8500, 12000, 4300, 9100, 11500, 15000, 6000]) # через метод array создали массив NumPy из списка
+# print(arr)
+# sum_all = arr.sum() # сумма всех шагов
+# print(sum_all)
+# min_all = arr.min() # нашли минимальное значение
+# print(min_all)
+# max_all = arr.max() # нашли максимальное значение
+# print(max_all)
+#
+# 6.массив [18.2, 19.5, 21.0, 17.8, 16.5, 23.1, 24.5, 20.0, 19.1, 18.0, 22.4, 25.0, 15.8, 17.2] -
+# ежедневная температура в городе за 14 дней.
+# найдите среднюю температуру, медиану, стандартное отклонение и дисперсию
+# temp = np.array([18.2, 19.5, 21.0, 17.8, 16.5, 23.1, 24.5, 20.0, 19.1, 18.0, 22.4, 25.0, 15.8, 17.2])
+# average_temp = temp.mean() # средняя
+# print(f'Средняя температура: {average_temp:.2f}')
+# print(f'Медиана: {np.median(temp):.2f}')
+# std_temp = np.std(temp) # стандартное отклонение
+# print(f'Стандартное отклонение зарплаты: {std_temp:.2f}')
+# var_temp = temp.var()
+# print(f'Дисперсия: {var_temp:.2f}')
+#
+# 7. Медиана против Среднего
+# В небольшом отделе из 5 человек зп составляют: 30, 35, 40, 45, 300 тыс рублей (директор)
+# Посчитайте среднюю зарплату и медиану. Посмотрите какой показатель
+# лучше отражает реальную ситуацию сотрудников
+# salary = np.array([30000, 35000, 40000, 45000, 300000])
+# average_salary = np.mean(salary)
+# print(f'Средняя зарплата: {average_salary:.2f}')
+# print(f'Медиана: {np.median(salary):.2f}') # данный показатель лучше отображает ситуацию
+# сотрудников
+#
+# 8. Индексы экстремумов
+# Дана цена на акцию за 5 дней [150, 142, 165, 139, 155].
+# найдите номер дня (индекс
+# , когда акция стоила дешевле всего и номер дня, когда стоила дороже всего)
+# prices = np.array([150, 142, 165, 139, 155])
+# min_index = np.argmin(prices)
+# max_index = np.argmax(prices)
+# print(f"минимальная цена (индекс): {min_index}")
+# print(f"максимальная цена (индекс): {max_index}")
