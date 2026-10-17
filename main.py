@@ -8,6 +8,7 @@
 # from pickletools import read_stringnl_noescape
 # from queue import PriorityQueue
 from sqlite3 import dump
+from tarfile import data_filter
 
 # print("Hello,", name, type(name), id(name))
 # age = 20
@@ -3324,3 +3325,228 @@ import numpy as np
 # max_index = np.argmax(prices)
 # print(f"минимальная цена (индекс): {min_index}")
 # print(f"максимальная цена (индекс): {max_index}")
+
+# import pandas as pd
+
+# s1 = pd.Series([1,2,3,4,5])
+# s2 = pd.Series([6,7,8,9,10])
+#
+# # s3 = s1 + s2
+# # print(s3)
+#
+# # s3 = s2 - s1
+# # s3 = s2 * s1
+# s3 = s2 / s1
+# print(s3)
+
+# s1 = pd.Series(['a','b','c', 'w', 'r'])
+# s2 = pd.Series(['d','e','f'])
+#
+# s3 = s1 + s2
+# print(s3)
+
+# s1 = pd.Series([1,2,3,4,5])
+# s2 = s1 + 5
+#
+# print(s2)
+
+# s = pd.Series([10,20,30,40,50])
+#
+# filtered_data = s[s >= 30] # 30, 40, 50 с сохранением своих меток
+# print(filtered_data)
+
+# s = pd.Series(['Сергей', 'Роман', 'Вадим','Виталий','Сергей', 'Вадим'])
+# filtered_data = s[s == 'Сергей']
+# print(filtered_data)
+
+# s = pd.Series([1,2,3,5,8,13,21,30,55,89])
+#
+# # filtered_data = s[(s > 8 ) & (s < 30)] #
+# filtered_data = s[(s > 8 ) | (s < 30)] # False | True если или хотя бы с одной строны долно быть тру
+# print(filtered_data)
+
+# s = pd.Series(['Сергей', 'Роман', 'Вадим','Виталий','Александр', 'Артем'])
+# filtered_data = s[s.isin(['Роман', 'Игорь', 'Артем'])] # позволяет проверить соответствует ли элемент указанным значениям
+# print(filtered_data)
+
+# s = pd.Series([1,2,3,5,8,13,21,30,55,89])
+# data_filtered = s[s.between(8,30)] # фильтруются от 8 до 30 включительно
+# print(data_filtered)
+
+# s = pd.Series(['1.0', '2', 'ошибка', '4.5'])
+# # res = pd.to_numeric(s, errors='coerce') # если есть строковое значение
+#
+# # s = pd.Series(['1.0', '2', '4.5'])
+# # res = pd.to_numeric(s)
+# #
+# # print(res)
+#
+# # res = s.astype(int)  # если знает тип данных эд
+# res = s.astype(int, errors='ignore') # преобразовываем к числу
+# print(res)
+
+# data = {
+#     'Name': ['Сергей', 'Анна', 'Роман', 'Александр'],
+#     "Age": [28, 35, 23, 42],
+#     'City':['Сочи','Москва','Воронеж','Армавир']
+# }
+# df = pd.DataFrame(data)
+# print(df)
+# print('*' * 30)
+# cities = (df['City']) # 1 вариант обратились по ключу и получили все знаяения столбца
+# print(cities)
+#
+# print('*' * 30)
+# cities = df.City # 2 вариант обратились по ключу и получили все знаяения столбца
+# print(cities)
+#
+# print('*' * 30)
+# columns = ['City', 'Name'] # сохранили в переменную колонки
+# print(df[columns]) # полчили доступ к значениям колонок
+#
+# # print(df[['City', 'Name']]) # 2 вариант получить доступ к значениям 2м колонок
+# print('*' * 30)
+# int_columns = df.select_dtypes(include='int64') #обращаемся к числовым значениям
+# # и он вывел все солбцы с числовыми значениями
+# print(int_columns)
+
+#Общий вывод:
+# df = pd.DataFrame(data) #
+# print(df)
+# print('*' * 30)
+# print(df.loc[1]) # вывели строку обратившись к индексу/метке 1
+# print(df.loc[0:2]) # вывели строку обратившись к индексу/метке в диапазоне
+# =====================
+
+# df = pd.DataFrame(data, index=['str_1', 'str_2', 'str_3', 'str_4']) #замена индексов 0,1,2,3 на значения str_1 и т.д.
+# print(df)
+# print('*' * 30)
+# # print(df.loc['str_2']) # вывели строку обратившись к 'str_2'
+# print(df.loc[['str_1','str_3']]) # вывели строку обратившись к 'str_2'
+# print(df.loc['str_1':'str_3']) # вывели c 'str_1':'str_3' включительно
+# print(df.iloc[0])
+# print('*' * 30)
+# # print(df.iloc[1:3]) #1 вариант
+# print(df[1:3]) #2 вариант
+
+# print(df['City']['str_3'])
+# print('*' * 30)
+# print(df['City'][1:3]) #Москва Воронеж по индексам
+# print('*' * 30)
+# print(df['City']['str_2':'str_4']) #Москва Воронеж по индексам включительно 2 и 4
+# print(df['City'][['str_1','str_3', 'str_4']]) #
+
+# column = ['City', 'Name']
+# print(df[column][1:3]) # указали в диапазоне колонок какой срез нужен н
+#
+# print(df[['City', 'Name']][1:3]) #
+#
+# print(df.shape) # (4, 3) 4 строки и 3 столбца
+
+# print(df.dtypes) # по каждому столбцу показывает тип данных и в конце общий тип
+#
+# rows = [
+#     ['Ноутбук', 50000, 5],
+#     ['Смартфон', 30000, 10],
+#     ['Наушники', 5000, 25]
+# ]
+# df_products = pd.DataFrame(rows, columns=['Товар', 'Цена', 'Количество' ]) # дали названия колонок если не словарь
+# print(df_products)
+#
+# print('*' * 30)
+#
+# api_data =[
+#     {'ФИО': 'Иванов И.И.', 'Департамент': 'IT'},
+#     {'ФИО': 'Петров П.П.', 'Департамент': 'HR'},
+#     {'ФИО': 'Сидоров С.С.'}
+# ]
+#
+# df = pd.DataFrame(api_data)
+# print(df)
+
+# import  numpy as np
+# import pandas as pd
+#
+
+# data = np.array([
+#     ['Том',41, 'Yandex'],
+#     ['Bob', 56, 'VK'],
+#     ['Sam',31, 'Sber']
+# ])
+# #преобразорвывем нампай в пандас:
+# columns  = ['Name', 'Age', 'Company' ]
+# df= pd.DataFrame(data, columns=columns)
+# print(df)
+
+
+# data = pd.read_excel('data.xlsx') # когда считываем данные из экселя он автоматически как датафрейм
+# print(data)
+# print('*' * 50)
+# # print(data.head(3)) # вывели первые 3 записи
+# print(data.tail(3)) # вывели последние 3 записи
+# print(data.Age.describe()) # все статистические данные по столбцу Age
+# print('*' * 50)
+# print(data.describe())
+
+
+# df = pd.read_json('people.json')
+# print(df)
+
+# df = pd.read_csv('internet.csv')
+# print(df)
+# print('*'* 50)
+# # print(df.sort_values('mobile', ascending=False)) # сортировка по убываю
+# # print(df.dropna())
+#
+# new_country = {'country': 'Галактика', 'broadband': 1234, 'mobile': 295.45}
+# df1 = pd.DataFrame([new_country])
+# print(df1)
+# print('*'* 50)
+#
+# new_list1 = pd.concat([df1, df], ignore_index=True) # сделали новые индексы после объединения
+# print(new_list1)
+# # new_list1.to_csv('country.csv')
+# new_list1.to_csv('new_country.csv', index=False)
+
+
+import pandas as pd
+#3326 Задача 1: Создание Series и фильтрация
+# Условие: у вас есть данные о продажах товаров в интернет-магазине
+# за неделю (в тысячах рублей): [12, 15, 8, 20, 25, 30, 10].
+# Дни недели соответствуют индексу: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'].
+# Создайте Series и найдите дни, когда продажи были больше 15 тысяч рублей.
+# s_data = [12, 15, 8, 20, 25, 30, 10]
+# s_days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
+# sales = pd.Series(s_data,index=s_days)
+# print(sales)
+# print('*'* 10)
+# filtered_data = sales[sales > 15]
+# print(filtered_data)
+
+#-------------------------------------------
+
+#Задача 2: Поиск топ-N значений
+# Условие: Дан список оценок студентов по тесту: [85, 90, 78, 92, 88, 76, 95, 92].
+# Индексы — имена студентов: ['Аня', 'Боря', 'Влад', 'Глаша', 'Дима', 'Ева', 'Жора', 'Зина'].
+# Найдите 3 самые высокие оценки.
+# s_score = [85, 90, 78, 92, 88, 76, 95, 92]
+# s_name = ['Аня', 'Боря', 'Влад', 'Глаша', 'Дима', 'Ева', 'Жора', 'Зина']
+# res_student = pd.Series(s_score,s_name)
+# print(res_student)
+# print('*'* 20)
+# sorted_scores = res_student.sort_values(ascending=False) # сортируем по убыванию
+# # print(sorted_scores)
+# filtered_top = sorted_scores.head(4) # выводим топ 3 (два студента с одним результатом)
+# print(filtered_top)
+
+#-------------------------------------------
+
+#Задача 3: Проверка условий (True / False)
+#Условие: Дан Series с возрастом пользователей: [16, 25, 38, 17, 42, 15].
+# Создайте новый Series, который будет содержать True,
+# если пользователь совершеннолетний (18 лет и старше), и False, если нет.
+#
+# s = [16, 25, 38, 17, 42, 15]
+# age = pd.Series(s)
+# filtered_age = age >= 18
+# print(filtered_age)
