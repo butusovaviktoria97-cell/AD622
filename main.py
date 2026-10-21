@@ -7,6 +7,7 @@
 # from operator import truediv
 # from pickletools import read_stringnl_noescape
 # from queue import PriorityQueue
+from multiprocessing.reduction import duplicate
 from sqlite3 import dump
 from tarfile import data_filter
 
@@ -3550,3 +3551,291 @@ import pandas as pd
 # age = pd.Series(s)
 # filtered_age = age >= 18
 # print(filtered_age)
+
+#
+# df = pd.read_csv('internet.csv')
+# print(df)
+# print('*'* 50)
+# print(df.sort_values('mobile', ascending=False)) # сортировка по убываю
+# print(df.dropna())
+
+# new_country = {'country': 'Галактика', 'broadband': 1234, 'mobile': 295.45}
+# df1 = pd.DataFrame([new_country])
+# print(df1)
+# print('*'* 50)
+#
+# new_list1 = pd.concat([df1, df], ignore_index=True) # сделали новые индексы после объединения
+# print(new_list1)
+# new_list1.to_csv('country.csv')
+# new_list1.to_csv('new_country.csv', index=False)
+# new_list1.to_csv('new_data.txt', index=False)
+# new_list1.to_string('new_data1.txt', index=False)
+# print('*'* 50)
+# new_list1.drop(0, inplace=True) # удалили по индексу
+# print(new_list1)
+
+
+# df = pd.read_csv('internet.csv') # csv становится DataFrame через пандас - обращение pd...
+# print(df)
+# print('*'* 50)
+# print(df[df['mobile'] > 100]) # сравниваем со значением 100
+# filtred_data = df[df['country'].str.startswith('S')] # фильтр стран с "S"
+# print(filtred_data)
+#
+# print(df['broadband'].agg(['mean'])) # среднее ариф
+# print('*'* 50)
+# print(df['broadband'].agg(['min', 'max', 'median']))
+#Способы вывода(представленя данных) df:
+
+# в цикле (перебор по столбцам):
+# for row_label, row in df.items(): # items() берет и ключи и значения одновременно
+#     print(row_label, row, sep="\n", end="\n\n")
+# print('*'* 50)
+
+# в цикле  (перебор по строкам):
+# for row_label, row in df.iterrows():
+#     print(row_label, row, sep="\n", end="\n\n")
+
+# в цикле  (выводит в виде кортежа) в строку:
+# for item in df.itertuples():
+#     print(item, sep="\n", end="\n\n")
+
+#
+# data = {
+#     'User_ID': [101, 102, 101, 103, 101],
+#     'City': ['Москва', 'Питер', 'Москва', 'Казань', 'Сочи'],
+#     'Spend': [500, 700, 500,300 ,1200]
+# }
+# df = pd.DataFrame(data)
+# print(df)
+#
+# print('*'* 50)
+# duplicates = df.duplicated() # поиск дубликтов
+# print(duplicates)
+#
+# print('*'* 50)
+# df_cleaned = df.drop_duplicates().reset_index(drop=True) # находит и удаляет дубликаты,
+# # а reset_index(drop=True) сбросил индексацию
+# print(df_cleaned)
+# df_cleaned = df.drop_duplicates(subset='User_ID', keep='last') # удалили дубликаты по столбцу User_ID
+# print(df_cleaned)
+# print(df)
+# print('*'* 50)
+# df.drop_duplicates(inplace=True) #изменение в исходном DF
+# print(df)
+
+# year = [1147, 1703, 1723,1893, 1589]
+# df['Year'] = year
+# print(df)
+
+# new_columns = pd.DataFrame({
+#     "Year": [1147, 1703, 1723,1893, 1589],
+#     "Time zone": ['GMT+3','GMT+3', 'GMT+3', 'GMT+3', 'GMT+3' ]
+# })
+# print('*'* 50)
+# df = pd.concat([df, new_columns], axis=1) #
+# print(df)
+# print('*'* 50)
+#
+# df.drop('Year',axis=1, inplace=True)
+# print(df)
+# print('*'* 50)
+
+# new_row = pd.Series([104, 'Воронеж', 1042], index=df.columns)
+# print(new_row)
+# print('*'* 50)
+# df.loc[len(df)] = new_row # в последнюю строк  добавили
+# print(df)
+# print('*'* 50)
+#
+# new_row  = pd.DataFrame([[104, 'Воронеж', 1042], [105, 'Саратов', 542]], columns=df.columns)
+# df = pd.concat([df, new_row], ignore_index=True) # добавиил 2 строки
+# print(df)
+# print('*'* 50)
+# rows = [1, 3]
+# df.drop(rows, inplace=True) # удалили строку с индексоми в переменной rows = [1, 3]
+# # df.drop(2, inplace=True) # удалили строку с индексом 2
+# print(df)
+
+#методы пандас:
+# data = {"Age": [34,37,13,64,37,47,24,38,26,41,19,51,44]}
+# df = pd.DataFrame(data)
+# print(df)
+# print('*'* 50)
+# print("Среднее значение:", df["Age"].mean())
+# print('*'* 50)
+# print("Медиана:", df["Age"].median())
+# print('*'* 50)
+# print("Мода", df["Age"].mode()[0]) #
+# print('*'* 50)
+# print("Разброс значений", df["Age"].var(), 'и стандартное отклонение:', df["Age"].std() ) #
+# print('*'* 50)
+# print("Квантили возраста:") #
+# print(df["Age"].quantile([0.25, 0.5, 0.75]))
+# print('*'* 50)
+# print('90-й процентиль возраста:',df["Age"].quantile([0.90]))
+
+# import numpy as np
+# import pandas as pd
+
+#
+# data = {
+#     "A":[1,2,np.nan, 4, None],
+#     "B":[None, 6,7,8,np.nan]
+# }
+#
+# df = pd.DataFrame(data)
+# print("DataFrame до заполнения пропущенных значений: ")
+# print(df)
+# print('*'* 50)
+# # # # Метод isna для поиска пропущунных значений:
+# # missing_data = df.isna() # True - если элемент отсутствует
+# # print(missing_data)
+# # print('*'* 50)
+# # non_missing_data = df.notna()# False - если элемент отсутствует
+# # print(non_missing_data)
+# print("DataFrame после заполнения пропущенных значений: ")
+# # print('*'* 50)
+# # filled_df = df.fillna(0) # заполнил знаяения NaN значением 0.0
+# # print(filled_df)
+# filled_df = df.copy() # создали копию чтобы не влиять на оригинал
+# filled_df["A"] = df["A"].fillna(df['A'].mean()) # заполнил где NaN в столбце A среднеариф
+# print(filled_df)
+#
+# filled_df = df.copy() # создали копию чтобы не влиять на оригинал
+# filled_df["B"] = df["B"].fillna(df['B'].median()) # заполнил где NaN в столбце B медианой
+# print(filled_df)
+
+#================================================
+# data = {
+#     "City": ["Москва", "Санкт-Петербург", "Новосибирск","Екатеринбург","Казань","Краноярск", "Волгоград" ],
+#     "Population": [13274, None, 1637, None, 1330, 1212, None],
+#     "Time zone": ['GMT+3','GMT+3', 'GMT+7', 'GMT+5', 'GMT+3',None, 'GMT+3']
+# }
+#
+# df = pd.DataFrame(data)
+# print(df)
+# print('*'* 50)
+# # missing_data = df["Population"].isna() # возращает булево значение - True, если NaN
+# # print(missing_data)
+# # print('*'* 50)
+# # missing_data = df[df["Population"].isna()] # возращает только Population с NaN
+# # print(missing_data)
+# # print('*'* 50)
+# # missing_mask = df.isna() # возращает все строки с NaN по всем столбцам
+# # missing_data = df[missing_mask.any(axis=1)]
+# # print(missing_data)
+# print('*'* 50)
+# not_missing_mask = df.notna() # получаем знаяения без NaN (пропусков)
+# non_missing_df = df[not_missing_mask.all(axis=1)]
+# print(non_missing_df) # если заполнено -  True, если значение отсутвует - False
+
+
+# print("DataFrame до заполнения пропущенных значений: ")
+# print(df)
+# print('*'* 50)
+# # Обработка пустых значений:
+# tz_mod = df['Time zone'].mode()[0]
+# print('Мода для столбца Time zone',tz_mod)
+# print('*'* 50)
+# print("DataFrame после заполнения пропущенных значений: ")
+#
+# df['Time zone'] = df['Time zone'].fillna(tz_mod) # нашли пустые значения NaN и передаем значения моды из tz_mod
+# print(df)
+# print('*'* 50)
+
+#
+# data = {
+#     'Имя': ['Анна', 'Борис', 'Влад', 'Ольга', 'Марина', 'Роман', 'Екатерина', 'Виктор', 'Ирина'],
+#     'Возраст': [25, 34, 41, 28, 19, 20, 36, 41, 38],
+#     'Город': ['Москва', 'Санкт-Петербург', 'Казань', 'Сочи', 'Санкт-Петербург', 'Москва', 'Санкт-Петербург', 'Казань', 'Сочи']
+# }
+#
+# df = pd.DataFrame(data)
+# print(df)
+# print('*'* 50)
+# print(df.groupby('Город')['Возраст'].median()) # делает группировку по определенному параметру
+# print(df.groupby('Город')['Возраст'].sum()) # делает группировку по определенному параметру
+
+#---------------------------
+# data = {
+#     "product_id":[105, 111, 102,108,123,105],
+#     'category':[
+#         ' Электроника ',
+#         "Одежда",
+#         " Электроника",
+#         "Обувь",
+#         "Одежда ",
+#         ' Электроника '
+#     ],
+#     'price':["15 000,50", "2 500,00", "Не указана", "1 200", None, "15 000,50"],
+#     'quantity': [2, np.nan, 1, 5, 10, 2]
+# }
+# df = pd.DataFrame(data)
+# print(df)
+#
+# print('*' * 50)
+# df['category'] = df['category'].str.strip() #убрали пробелы и слева и справа
+# print(df)
+# df['price'] = df['price'].str.replace(' ', '') # убрали лишние пробелы в цифрах
+# # print(df)
+# df['price'] = df['price'].str.replace(',', '.')# убрали запятые и заменили на . в числах
+# print(df)
+#___________________________
+#HW
+# Задача 1: Фильтрация данных
+# Условие: Дан DataFrame с именами, возрастом и городами людей. Оставьте только тех, кто старше 30 лет.
+
+import pandas as pd
+import numpy as np
+# data = { 'Имя': ['Анна', 'Борис', 'Влад', 'Ольга'],
+#          'Возраст': [25, 34, 41, 28],
+#          'Город': ['Москва', 'Санкт-Петербург', 'Казань', 'Сочи'] }
+# df = pd.DataFrame(data)
+# print(df)
+# print('*' * 50)
+# filtered_df = df[df['Возраст'] > 30]
+#
+# print(filtered_df)
+
+# Задача 2: Группировка и агрегация
+# Условие: Найдите средний возраст людей в каждом городе.
+# data = {
+#     'Имя': ['Анна', 'Борис', 'Влад', 'Ольга', 'Марина', 'Роман', 'Екатерина', 'Виктор', 'Ирина'],
+#     'Возраст': [25, 34, 41, 28, 19, 20, 36, 41, 38],
+#     'Город': ['Москва', 'Санкт-Петербург', 'Казань', 'Сочи', 'Санкт-Петербург', 'Москва', 'Санкт-Петербург', 'Казань', 'Сочи']
+# }
+# df = pd.DataFrame(data)
+# print(df)
+# print('*' * 50)
+# print(df.groupby('Город')['Возраст'].mean().round(2))
+
+# Задача 3: Добавление нового столбца
+# Условие: Добавьте столбец «Статус», где будет значение «Взрослый»,
+# если возраст больше или равен 30, и «Молодой», если меньше 30.
+# data = {
+#     'Имя': ['Анна', 'Борис', 'Влад', 'Ольга', 'Марина', 'Роман', 'Екатерина', 'Виктор', 'Ирина'],
+#     'Возраст': [25, 34, 41, 28, 19, 20, 36, 41, 38],
+#     'Город': ['Москва', 'Санкт-Петербург', 'Казань', 'Сочи', 'Санкт-Петербург', 'Москва', 'Санкт-Петербург', 'Казань', 'Сочи']
+# }
+# df = pd.DataFrame(data)
+#
+# df['Статус'] = 'Молодой'
+# # print(df)
+# df.loc[df['Возраст'] >= 30, 'Статус'] = 'Взрослый'
+# print(df)
+
+# Задача 4: Обработка пропущенных значений (NaN)
+# Условие: В датафрейме с данными о продажах есть пропуски. Заполните пропущенные
+# значения в столбце Продажи средним арифметическим по этому столбцу,
+# а строки, где пропущено Имя товара, полностью удалите.
+data = {
+    'Имя товара': ['Монитор', np.nan, 'Мышка', 'Клавиатура'],
+    'Продажи': [15000, 23000, np.nan, 8000]
+}
+df = pd.DataFrame(data)
+df = df.dropna(subset=['Имя товара'])
+# print(df)
+mean_sales = df['Продажи'].mean()
+df['Продажи'] = df['Продажи'].fillna(mean_sales)
+print(df)
