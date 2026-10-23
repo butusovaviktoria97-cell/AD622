@@ -7,9 +7,9 @@
 # from operator import truediv
 # from pickletools import read_stringnl_noescape
 # from queue import PriorityQueue
-from multiprocessing.reduction import duplicate
-from sqlite3 import dump
-from tarfile import data_filter
+# from multiprocessing.reduction import duplicate
+# from sqlite3 import dump
+# from tarfile import data_filter
 
 # print("Hello,", name, type(name), id(name))
 # age = 20
@@ -3252,7 +3252,7 @@ from tarfile import data_filter
 # print(grades.nsmallest(3, 'last'))
 # print(grades.nsmallest(3, 'all'))
 
-import numpy as np
+# import numpy as np
 # 1. Создайте массив чисел от 10 до 50 с шагом 5:
 # d = np.arange(10,50,5) # от нуля до 10 не включая 10 с шагом 3
 # print(d)
@@ -3510,7 +3510,7 @@ import numpy as np
 # new_list1.to_csv('new_country.csv', index=False)
 
 
-import pandas as pd
+# import pandas as pd
 #3326 Задача 1: Создание Series и фильтрация
 # Условие: у вас есть данные о продажах товаров в интернет-магазине
 # за неделю (в тысячах рублей): [12, 15, 8, 20, 25, 30, 10].
@@ -3678,6 +3678,7 @@ import pandas as pd
 # import numpy as np
 # import pandas as pd
 
+
 #
 # data = {
 #     "A":[1,2,np.nan, 4, None],
@@ -3757,7 +3758,7 @@ import pandas as pd
 # print(df.groupby('Город')['Возраст'].median()) # делает группировку по определенному параметру
 # print(df.groupby('Город')['Возраст'].sum()) # делает группировку по определенному параметру
 
-#---------------------------
+#---------------------------22.10
 # data = {
 #     "product_id":[105, 111, 102,108,123,105],
 #     'category':[
@@ -3773,69 +3774,213 @@ import pandas as pd
 # }
 # df = pd.DataFrame(data)
 # print(df)
-#
-# print('*' * 50)
+# print('*' * 60)
 # df['category'] = df['category'].str.strip() #убрали пробелы и слева и справа
-# print(df)
+# # print(df)
 # df['price'] = df['price'].str.replace(' ', '') # убрали лишние пробелы в цифрах
 # # print(df)
+# # print('*' * 50)
 # df['price'] = df['price'].str.replace(',', '.')# убрали запятые и заменили на . в числах
-# print(df)
-#___________________________
-#HW
-# Задача 1: Фильтрация данных
-# Условие: Дан DataFrame с именами, возрастом и городами людей. Оставьте только тех, кто старше 30 лет.
-
-import pandas as pd
-import numpy as np
-# data = { 'Имя': ['Анна', 'Борис', 'Влад', 'Ольга'],
-#          'Возраст': [25, 34, 41, 28],
-#          'Город': ['Москва', 'Санкт-Петербург', 'Казань', 'Сочи'] }
-# df = pd.DataFrame(data)
-# print(df)
-# print('*' * 50)
-# filtered_df = df[df['Возраст'] > 30]
-#
-# print(filtered_df)
-
-# Задача 2: Группировка и агрегация
-# Условие: Найдите средний возраст людей в каждом городе.
-# data = {
-#     'Имя': ['Анна', 'Борис', 'Влад', 'Ольга', 'Марина', 'Роман', 'Екатерина', 'Виктор', 'Ирина'],
-#     'Возраст': [25, 34, 41, 28, 19, 20, 36, 41, 38],
-#     'Город': ['Москва', 'Санкт-Петербург', 'Казань', 'Сочи', 'Санкт-Петербург', 'Москва', 'Санкт-Петербург', 'Казань', 'Сочи']
-# }
-# df = pd.DataFrame(data)
-# print(df)
-# print('*' * 50)
-# print(df.groupby('Город')['Возраст'].mean().round(2))
-
-# Задача 3: Добавление нового столбца
-# Условие: Добавьте столбец «Статус», где будет значение «Взрослый»,
-# если возраст больше или равен 30, и «Молодой», если меньше 30.
-# data = {
-#     'Имя': ['Анна', 'Борис', 'Влад', 'Ольга', 'Марина', 'Роман', 'Екатерина', 'Виктор', 'Ирина'],
-#     'Возраст': [25, 34, 41, 28, 19, 20, 36, 41, 38],
-#     'Город': ['Москва', 'Санкт-Петербург', 'Казань', 'Сочи', 'Санкт-Петербург', 'Москва', 'Санкт-Петербург', 'Казань', 'Сочи']
-# }
-# df = pd.DataFrame(data)
-#
-# df['Статус'] = 'Молодой'
 # # print(df)
-# df.loc[df['Возраст'] >= 30, 'Статус'] = 'Взрослый'
+# # print('*' * 50)
+# df['price']=pd.to_numeric(df['price'], errors = 'coerce') #преоюразовали к числовым значениям
+# # print(df)
+# # print('*' * 50)
+# df['price'] = df['price'].fillna(df['price'].median()) # ЗАПОЛНИЛИ ПРОПУСКИ  МЕДИАННЫМ ЗНАЧЕНИЕМ
+# # print(df)
+# # print('*' * 50)
+# df['quantity'] = df['quantity'].fillna(1) #  NaN в столбце  quantity заменили на 1
+# # print(df)
+# # print('*' * 60)
+# df['total_revenue'] = df['quantity'] * df['price'] # добавили новый столбец
+# # print(df)
+# # print('*' * 60)
+# df = df.drop_duplicates().reset_index(drop=True) # удалили дубликаты и пересчитали индексы
 # print(df)
+# print('*' * 60)
 
-# Задача 4: Обработка пропущенных значений (NaN)
-# Условие: В датафрейме с данными о продажах есть пропуски. Заполните пропущенные
-# значения в столбце Продажи средним арифметическим по этому столбцу,
-# а строки, где пропущено Имя товара, полностью удалите.
-data = {
-    'Имя товара': ['Монитор', np.nan, 'Мышка', 'Клавиатура'],
-    'Продажи': [15000, 23000, np.nan, 8000]
-}
-df = pd.DataFrame(data)
-df = df.dropna(subset=['Имя товара'])
-# print(df)
-mean_sales = df['Продажи'].mean()
-df['Продажи'] = df['Продажи'].fillna(mean_sales)
-print(df)
+#====================
+# import pandas as pd
+#
+#
+# df = pd.read_csv('platforms.csv') #рочитаи файл platforms.csv
+# print(df, end='\n\n')
+# print('*' * 60)
+#
+# df['Views'] = df['Views'].fillna(df['Views'].mean()) # заменили  NaN на среднеариф.
+# print(df, end='\n\n')
+# print('*' * 60)
+# df['Revenue'] = df['Revenue'].fillna(0) # заменили  NaN на 0
+# df.drop_duplicates(inplace=True) #удалили элементы дубликаты
+# print(df, end='\n\n')
+# print('*' * 60)
+# df['Views'] = df['Views'].astype(int) #преобразовали в целочисленное значение
+# df['Date'] = pd.to_datetime(df['Date']) #преобразовали в дату
+# print(df, end='\n\n')
+# print('*' * 60)
+#
+# print(df.describe(), end='\n\n') # метод работает только с числовыми данными и датами
+# filtered = df[df['Platform'] == 'YouTube'] #отфильтровали данные и вывели только данные по YouTube
+# print(filtered, end='\n\n')
+#
+# mean_views = filtered['Views'].mean()
+# mean_revenue = filtered['Revenue'].mean()
+# print(mean_views, end='\n\n')
+# print(mean_revenue, end='\n\n')
+#
+# filtered.to_csv('new_data.csv', index=False)
+
+# import matplotlib.pyplot as plt
+# import numpy as np
+
+# x = np.array([4, 5, 6, 7, 8]) # преобразует обычный список Python в массив NumPy
+# y = np.array([1, 2, -6, 0, 4])
+# # plt.plot([1,2,-6,0,4]) # по оси Y (по оси ординат)
+# plt.plot(x,y)
+# plt.show()
+
+# x = np.array([1, 1, 5,  5, 1]) # преобразует обычный список Python в массив NumPy
+# y = np.array([1, 5, 5, 1, 1])
+# plt.plot(x,y)
+# plt.show()
+
+#из массива NumPy:
+# y = np.array([0,1,2,3,4,])
+# x = np.array([a * a for a in y]) # [ 0  1  4  9 16]
+# print(x)
+# plt.plot(x,y)
+# plt.grid()
+# plt.show()
+
+# из обычного массива:
+# plt.plot([1,2,3], [4,5,2], [1,2,4], [5,3,6])
+# plt.plot([1,2,3], [4,5,2]) # x, y
+# plt.plot([1,2,4],[5,3,6]) # x, y
+# plt.grid()
+# plt.show()
+
+# plt.plot([1,2,4],[4,2,5], '--') #график в виде ----
+# # plt.plot([1,2,4],[4,2,5], ':')
+# # plt.plot([1,2,4],[4,2,5], '-.')
+# plt.show()
+
+# plt.plot([1,2,4], [4,2,5], '-.', [1,2,3], [3,6,5], ':')
+
+# plt.plot([1,2,4], [4,2,5], '-.', color='red') # установили цвет графика
+# plt.plot([1,2,4], [4,2,5], '-.', color='#FF0000')
+# plt.plot([1,2,4], [4,2,5], '-.', color='#F00')
+# plt.plot([1,2,4], [4,2,5], '-.o', c='#F00') # добавили маркеры чарез '-.o'
+# plt.plot([1,2,4], [4,2,5], '-.', c='#F00', marker='s', markerfacecolor='#0F0', linewidth=4) # добавили маркеры чарез '-.o'
+# plt.grid() # добавление сетки
+# plt.show()
+
+
+
+# x = [1,2,4]
+# y = [4,2,5]
+# x1 = [1,2,4]
+# y1 = [3,4,4]
+# plt.plot(x,y, color='green', label='линия 1')
+# plt.plot(x1,y1, color='orange', label='линия 2')
+# plt.fill_between(x1, y1, y, color='yellow', alpha=0.3, label='область между ними')
+# plt.title('Заливка между линиями') #заголовок графика
+# plt.xlabel('Ось х')
+# plt.ylabel('Ось y')
+# plt.legend()# дбави ли легенду-подпись
+# plt.minorticks_on() # минорная сетка
+# plt.grid(which='major', linewidth='1', color='#444')
+# plt.grid(which='minor', color='#aaa',ls=':')
+# plt.show()
+
+# import matplotlib.pyplot as plt
+# import numpy as np
+#
+# fig, ax = plt.subplots() # фигура и график на холсте(объект мольберта - fig)
+# #
+# # ax.plot([1,2,3], [4,5,2])
+# # ax.set_title('Мой график')
+# # plt.show()
+
+# import matplotlib.pyplot as plt
+# import numpy as np
+
+# days = np.array(list(range(1,8))) # [1 2 3 4 5 6 7] - массив с кол-ворм дней недель
+# # print(days)
+# temperature = [20,22,21,26,28,23,24]
+#
+# fig, ax = plt.subplots()
+# ax.set_xlabel('День')
+# ax.set_ylabel('Температура', fontsize = 14) # Увеличили шрифт подписи
+# ax.set_title('Динамика температуры за неделю', fontsize = 16, fontweight='bold', color = 'blue', loc='right') # добавлен заголовок
+#
+# ax.set_yticks([20,22,21,26,28,23,24])
+# ax.set_yticklabels(['20°','22°','21°','26°','28°','23°','24°'])
+#
+# ax.set_xticks(days)
+# ax.set_xticklabels(['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'])
+#
+# ax.tick_params(axis='x', length=7, labelsize=20) # rotation=90 - развернули подписть ПН, ВТ.. на 90 градусов
+# # ax.grid(axis='y') # добавлена сетка по оси y
+# # ax.grid(axis='both') # добавлена сетка-клетка
+# ax.grid(True, which='major',axis='both', linestyle='--', linewidth=0.5, color='grey', alpha=0.7) # добавлена сетка-клетка
+#
+# ax.text(5,28, 'Макс значение', fontsize=14, color='red', va='top', ha='right')
+#
+# ax.plot(days,temperature, label='Температура')
+# ax.legend(loc='lower right', fontsize=12, framealpha=0.8) # сверху слева легенда
+#
+# plt.show()
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+from openpyxl.chart import marker
+
+# Задание 1. Сравнение двух температурных рядов
+# Условие:
+# Имеются данные о температуре за 5 дней недели (понедельник — пятница):
+# •	Город А: [20, 22, 19, 23, 25]
+# •	Город Б: [15, 17, 18, 16, 21]
+# Постройте на одной координатной плоскости два линейных графика:
+# для Города А (красная сплошная линия с маркерами в виде точек) и
+# Города Б (зеленая штрихпунктирная линия с маркерами-квадратами).
+# Обязательно добавьте легенду.
+# days = np.array(list(range(1,6))) # [1 2 3 4 5]
+# city_a = [20, 22, 19, 23, 25]
+# city_b = [15, 17, 18, 16, 21]
+# fig, ax = plt.subplots()
+# ax.set_xlabel('День недели')
+# ax.set_ylabel('Температура')
+# ax.set_title('Динамика температуры за 5 дней', fontweight='bold') # добавлен заголовок
+#
+# ax.set_xticks(days)
+# ax.set_xticklabels(['пн', 'вт', 'ср', 'чт', 'пт'])
+#
+# ax.plot(days,city_a, label='Город А', color='red', marker='o')
+# ax.plot(days,city_b, label='Город Б', color='green', marker='s', linestyle='-.')
+#
+# ax.legend()
+# plt.show()
+
+
+# Задание 2. Отображение прибыли компании и выделение лучшего месяца
+# Условие:
+# Даны показатели прибыли компании (в тыс. рублей) за первое полугодие:
+# [120, 150, 90, 210, 180, 250].
+# Постройте линейный график. Окрасьте линию в фиолетовый цвет, увеличьте её толщину до 3.
+# Отдельно выделите точку с максимальной прибылью крупным красным маркером.
+month = np.array(list(range(1,7)))
+
+profit = [120, 150, 90, 210, 180, 250]
+
+fig, ax = plt.subplots()
+ax.set_ylabel('Прибыль, тыс. руб.')
+ax.set_title('Динамика прибыли за 1 полугодие', fontsize = 16, fontweight='bold') # добавлен заголовок
+
+ax.set_xticks(month)
+ax.set_xticklabels(['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь'])
+
+ax.plot(month,profit, color='violet', linewidth=3 )
+ax.plot(6, 250, marker='o', markersize=12, color='red', linestyle='None')
+
+plt.show()
