@@ -3932,55 +3932,850 @@
 # plt.show()
 
 
-import matplotlib.pyplot as plt
-import numpy as np
-from openpyxl.chart import marker
+# ----------------24.10 Диаграмма рассеивания
+# import matplotlib.pyplot as plt
+# import numpy as np
+# import pandas as pd
 
-# Задание 1. Сравнение двух температурных рядов
-# Условие:
-# Имеются данные о температуре за 5 дней недели (понедельник — пятница):
-# •	Город А: [20, 22, 19, 23, 25]
-# •	Город Б: [15, 17, 18, 16, 21]
-# Постройте на одной координатной плоскости два линейных графика:
-# для Города А (красная сплошная линия с маркерами в виде точек) и
-# Города Б (зеленая штрихпунктирная линия с маркерами-квадратами).
-# Обязательно добавьте легенду.
-# days = np.array(list(range(1,6))) # [1 2 3 4 5]
-# city_a = [20, 22, 19, 23, 25]
-# city_b = [15, 17, 18, 16, 21]
+
+# Диаграмма рассеивания:
+# x = np.array([np.random.randint(0,10) for i in range(100)])
+# y = np.array([np.random.randint(0,10) for i in range(100)])
+#
+# plt.scatter(x, y, color='red', alpha=0.5)
+# plt.xlabel('переменная x')
+# plt.ylabel('переменная y')
+# plt.title('Диаграмма рассеивания')
+#
+
+# plt.show()
+
+#------
+# districts = np.array([i for i in range(10) for j in range(20)])
+# # print(districts)
+#
+# base_prices = [65,80,75,35,90,55,40,110,95,70]
+# prices = [
+# base_prices[d] + np.random.randint (-10, 10) for d in districts
+# ]
+# # print(prices)
+# df = pd.DataFrame({'District':districts, 'Price':prices })
+#
+# mean_price = df.groupby('District')['Price'].mean()
+# cheapest_districts = mean_price.nsmallest(2).index.tolist()
+# print(f'Самые дешевые районы: {cheapest_districts}')
+#
+#
+# cheapest_df = df[df['District'].isin(cheapest_districts)]
+# other_df = df[~df['District'].isin(cheapest_districts)]
+#
+# plt.figure(figsize = (10,6))
+#
+# plt.scatter(
+#     other_df['District'],
+#     other_df['Price'],
+#     color='lightgrey',
+#     alpha = 0.7,
+#     edgecolor = 'black',#рамка вокруг точки
+#     linewidth = 0.5, # прозрачность рамки 50%
+#     label = 'Остальные районы'
+# )
+#
+# plt.scatter(
+#     cheapest_df['District'],
+#     cheapest_df['Price'],
+#     color='red',
+#     alpha = 0.9,
+#     edgecolor = 'black',#рамка вокруг точки
+#     s = 70, #увеличили точки
+#     label = 'Два самых дешевых района'
+#
+# )
+#
+# plt.title('Распределение цен на квартиры по районам города', fontsize=14, fontweight='bold')
+#
+# plt.xlabel('Номер района', fontsize=12)
+# plt.ylabel('Цена квартиры (млн. руб.)', fontsize=12)
+# plt.grid(axis='y', linestyle='--', alpha=0.5) #сетка
+#
+# plt.legend()
+#
+# plt.show()
+
+#---------Hist (Гистограмма)
+
+# age_data = [np.random.randint (18, 55) for i in range(25)]
+# print(age_data)
+#
+# plt.hist(age_data, bins=10, edgecolor='black', color='orange') # разбивка на интервалы с шагом 5
+#
+# plt.title('Возраст зрителей в кинотеатре')
+# plt.xlabel('Возраст (лет)')# подписи осей
+# plt.ylabel('Количество человек')# подписи осей
+#
+# plt.show()
+
+#---------Hist (Гистограмма) на примере доставки пиццы
+# import random
+# delivery_times = [random.gauss(35.0, 7.0) for i in range(1000)] #генерим список на 1000
+# # заказов c доставокой +-7 от 35мин
+#
+# plt.figure(figsize=(9,5))
+#
+# plt.hist(delivery_times,
+#          bins=20,
+#          color='#3498db',
+#          edgecolor='white',
+#          alpha=0.8
+# )
+#
+# plt.axvline(x=40,color='red', linestyle='--', linewidth=2, label='Стандарт компании (40 минут)')
+#
+# plt.title('Анализ времени доставки пиццы (1000 заказов)', fontsize=14, fontweight='bold')
+#
+# plt.xlabel('Время доставки в минутах', fontsize=12)
+# plt.ylabel('Количество заказов', fontsize=12)
+# plt.grid(axis='y', linestyle=':', alpha=0.5)
+# plt.legend(loc='upper left')
+#
+# plt.legend()
+# plt.show()
+
+
+#-----Bar (Столбчатые диаграммы):
+# categories = ['Пицца', 'Бургеры', 'Суши', 'Салаты', 'Напитки']
+# sales = [120, 85, 95, 40, 150]
+#
+# plt.figure(figsize=(8,5))
+# plt.bar(categories, sales, color='#1f77ff', edgecolor='#0000BB',width=0.6)
+#
+# plt.title('Продажа блюд в кафе за день', fontsize = 14, fontweight = 'bold')
+# plt.xlabel('Категории меню', fontsize=12)
+# plt.ylabel('Количество проданных порций', fontsize=12)
+#
+# plt.grid(axis='y', linestyle='--', alpha=0.5)
+#
+# plt.show()
+
+
+#-----Bar (Столбчатые диаграммы) на примере языков програмирования:
+
+# languages = ['Python', 'JavaScript', 'Java', 'C#', 'C++', 'Go', 'PHP']
+# project_count = [45,38,29,22,15,12,8]
+#
+#
+# colors = ['purple' if i == 0 else '#b0bec5' for i in range(len(languages))]
+#
+# plt.figure(figsize=(9,6))
+#
+# bars= plt.bar(languages,project_count, color= colors)
+#
+# plt.title('Использование языков програмирования в компании', fontsize = 14, fontweight = 'bold')
+# plt.xlabel('Языки програмирования', fontsize=12, labelpad = 10)
+# plt.ylabel('Количество активных проектов', fontsize=12, labelpad = 25)
+#
+# plt.ylim(0, max(project_count) + 5)
+#
+# plt.grid(axis='y', linestyle='--', alpha=0.5)
+# plt.gca().spines['top'].set_visible(False)
+# plt.gca().spines['right'].set_visible(False)
+# plt.tight_layout()
+#
+# plt.show()
+
+#------------------
+# days = [1,2,3,4,5]
+#
+# works = [5,4,6,5,4]
+# rest= [3,4,2,3,4]
+# sleep = [5,7,10,9,8]
+#
+# plt.stackplot(days,works,rest,sleep, labels=['Работа', 'Отдых', 'Сон'],
+#               colors=['#4466ee','#00bbff','#ff9988'])
+# plt.title('Распределение времени за 5 дней')
+# plt.xlabel('Дни')
+# plt.ylabel('Часы')
+# plt.grid(alpha=0.3)
+#
+# plt.legend()
+# plt.show()
+
+#------------------
+#
+# mouths = pd.date_range(start='2026-01-01', end='2026-12-31', freq='MS')
+# print(mouths)
+#
+# laptops = [500, 5800, 3000, 3500, 3500, 3800, 6100, 6500, 6600, 6600, 6800,5000]
+# smartphones = [2500, 166,2700,1800,2900,5000,5100,5500,5300, 5600,5500,5600]
+# tablets = [1000,1500,1600,1600,1800,5000,5500,5600,5600,5800,3000,3500]
+#
+# df = pd.DataFrame({'Month': mouths.strftime('%b %Y'), 'Laptops': laptops, 'Smartphones': smartphones, 'Tablets': tablets})
+#
+# plt.figure(figsize=(12,6))
+# plt.stackplot(df['Month'], df['Laptops'],df['Smartphones'],df['Tablets'], labels=['Ноутбуки', 'Смартфоны', 'Планшеты'])
+#
+# plt.title('Общие ежемесячные продажи за год')
+# plt.xlabel('Месяц')
+# plt.ylabel('Общие продажи')
+# plt.grid()
+#
+# plt.legend()
+# plt.show()
+
+#Круговая диаграмма
+#
+# labels = ['Еда', 'Транспорт', 'Жилье', 'Развлечения']
+# sizes = [30,20,40,10]
+#
+# plt.pie(sizes, labels=labels, autopct='%1.1f%%', colors=['red', 'green', 'blue', 'yellow'])
+#
+# plt.title('Круговая диаграмма')
+#
+# plt.show()
+
+
+# sizes = [35,25,25,15]
+# labels=['Python', 'JavaScript', 'C++', 'Java']
+# colors = ['#ff9999', '#66bbff', '#99ff99','#ffcc99']
+#
+# explode = [0.1,0,0,0] # отодвинули самый большой сегмент
+# plt.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%', explode=explode, shadow=True, startangle=140)
+#
+# plt.title('Популярность языков програмирования')
+# plt.show()
+
+
+#------------25.10!Bxplot (Диаграмма размаха) (Ящик с усами)
+#
+# age = [22,24,26,28,29,30,31,32,35,38,41,45,65]
+#
+# plt.boxplot(
+#     age,
+#     patch_artist=True, #разрешит закрасить внутренность ящика
+#     widths=0.15, # меняет ширину ящика
+#     flierprops=dict(marker='o', markersize=10,
+#                     markeredgecolor='#ff4dd4', markerfacecolor='#ff9999', alpha=0.8),
+#     medianprops=dict(color='#ff4d4d', linewidth=3), #  линия внутри ящика
+#     boxprops=dict(facecolor='#99ccff', color='#4d4d4d', linewidth=1),#цвет ящика и толщина лний
+#     whiskerprops=dict(color='#0000FF', linewidth=1), # цвет усов
+#     capprops=dict(color='#0000FF', linewidth=1),
+# )
+#
+# #Оформление текстом:
+# plt.text(1.1,30, 'Медиана', va='center', ha='left')
+# plt.text(1.1, 22, 'Мин (22)', va='center', ha='left')
+# plt.text(1.1, 65, 'Выброс (65)', va='center', ha='left', color='#cc6666', fontsize=11)
+# plt.grid(axis='y', linestyle='--', color='#CCCCCC') # вспомогательная сетка
+#
+# #подписи осей:
+# plt.title("распределение возраста сотрудников")
+# plt.ylabel('Возраст(лет)')
+# plt.xlabel('Сотрудники')
+#
+# #удаление лишних надписей на оси:
+# plt.xticks([1], [' '])
+#
+# plt.show()
+
+#
+# import matplotlib.pyplot as plt
+# import numpy as np
+
+# x = np.array([1,2,3])
+# y = np.array([1,2,3])
+#
+# x, y = np.meshgrid(x, y)
+#
+# z = x + y
+#
+# fig, ax = plt.subplots(subplot_kw=dict(projection='3d'))
+#
+# ax.plot_surface(x,y,z)
+#
+# plt.show()
+
+# price = np.array([10, 20, 30, 40, 50])
+# customers=np.array([100, 200, 300, 400, 500])
+#
+# x, y = np.meshgrid(price, customers)
+#
+# z = x * y
+#
+# fig = plt.figure()
+# ax = fig.add_subplot(111, projection='3d') # 1 - строк, 1 - сколько колонок. 1 - номер графика который создем
+#
+# ax.plot_surface(x, y, z,cmap='viridis') # jet, viridis
+# ax.set_xlabel('Модель прибыли')
+# ax.set_xlabel('Цена товара($)')
+# ax.set_ylabel('Количество клиентов')
+# ax.set_zlabel('Прибыль ($)')
+#
+# plt.show()
+
+#тепловая карта:
+# import matplotlib.pyplot as plt
+# import numpy as np
+# import pandas as pd
+#
+# data = np.array(np.array([[np.random.randint(-2, 3) for i in range(5)]for i in range(15)]))
+#
+# df = pd.DataFrame(data, columns=['Возраст', 'Доход', 'Кредит', 'Покупки', 'Дети'])
+# print(df)
+#
+# print('*' * 50)
+#
+# df.iloc[2,0] = np.nan
+# df.iloc[5:8,1] = np.nan
+# df.iloc[12,2]= np.nan
+# df.iloc[1,3]= np.nan
+# df.iloc[7:10,4]= np.nan
+#
+#
+# print(df)
+#
+# misssing_matrix = df.notna().astype(int)
+# print('*' * 50)
+# print(misssing_matrix)
+#
+# plt.figure(figsize=(8,6))
+# plt.imshow(misssing_matrix, aspect='auto')
+#
+# cbar = plt.colorbar(ticks=[0,1])
+# cbar.ax.set_yticklabels([' Пропуск (nan)', 'Есть данные'])
+#
+# plt.xticks(range(len(df.columns)), df.columns, rotation=45, ha='right') # вместо индексов названия колонок
+# plt.yticks(range(len(df)))
+#
+# plt.title('Карта пропущенных значений в датасете')
+# plt.xlabel('Признаки (колонки)')
+# plt.ylabel('Индексы строки (записи)')
+#
+# plt.show()
+
+
+#-----------------
+# import matplotlib.pyplot as plt
+# import numpy as np
+#
+#
+# days = ['пн', 'вт', 'ср', 'чт','пт','сб','вс']
+# hours = [f'{h:02d}:00' for h in range(9, 21)] # включая с 9 до 20
+#
+# # создать матрицу случайных активнойстей:
+# data = np.random.randint(5,40, size=(len(hours), len(days)))
+# data[3:5,0:5] += 25
+# data[7:11,5:7] += 45
+#
+#
+# plt.figure(figsize = (9,7))
+#
+# im = plt.imshow(data, aspect='auto', cmap='Oranges')
+# for i in range(len(hours)):
+#     for j in range(len(days)):
+#         val = data[i, j]
+#         color = 'white' if val > 45 else 'black'
+#         plt.text(j, i, str(val), ha='center', va='center', color=color, fontsize=10)
+# plt.xticks(range(len(days)), days) # заменили шкалу на дни недели
+# plt.yticks(range(len(hours)), hours) # заменили шкалу на часы
+#
+# cbar = plt.colorbar(im)
+# cbar.set_label('Количество дней / покупок', labelpad=10)
+#
+# plt.gca().set_xticks(np.arange(-0.5, len(days), 1))
+# plt.gca().set_yticks(np.arange(-0.5, len(hours), 1))
+#
+# plt.grid(which='minor', color='black', linestyle='-', linewidth=1.5)
+# plt.tick_params(which='minor', bottom=False, left=False)
+#
+# plt.show()
+
+# import matplotlib.pyplot as plt
+# import numpy as np
+# объединение графиков
+
+# x = np.array(list(range(1,13)))
+# print(x)
+#
+# y1 = np.random.randint(50, 200, size=12)
+# y2 = np.random.randint(50, 200, size=12)
+#
 # fig, ax = plt.subplots()
-# ax.set_xlabel('День недели')
-# ax.set_ylabel('Температура')
-# ax.set_title('Динамика температуры за 5 дней', fontweight='bold') # добавлен заголовок
 #
-# ax.set_xticks(days)
-# ax.set_xticklabels(['пн', 'вт', 'ср', 'чт', 'пт'])
-#
-# ax.plot(days,city_a, label='Город А', color='red', marker='o')
-# ax.plot(days,city_b, label='Город Б', color='green', marker='s', linestyle='-.')
+# ax.plot(x, y1, label='Общие продажи', color='blue')
+# ax.scatter(x,y2, label='Характеристика пиковых продаж', color='red')
+# ax.bar(x, y1, alpha=0.3, label='Распределение продаж', color='violet')
 #
 # ax.legend()
 # plt.show()
 
+#-----------------------
 
-# Задание 2. Отображение прибыли компании и выделение лучшего месяца
-# Условие:
-# Даны показатели прибыли компании (в тыс. рублей) за первое полугодие:
-# [120, 150, 90, 210, 180, 250].
-# Постройте линейный график. Окрасьте линию в фиолетовый цвет, увеличьте её толщину до 3.
-# Отдельно выделите точку с максимальной прибылью крупным красным маркером.
-month = np.array(list(range(1,7)))
+# import 0pyplot as plt
+# import numpy as np
+#
+# fig, ax = plt.subplots(nrows=2, ncols=2, figsize=(10,8))
+#
+# x = np.array(list(range(1,6)))
+# y1 = [1,4,9,16,25]
+# y2= [2,3,5,7,11]
+#
+# ax[0][0].plot(x,y1, color='blue')
+# ax[0][0].set_title('Линейный график')
+#
+# ax[0, 1].scatter(x,y2, color='red')
+# ax[0, 1].set_title('Диаграмма рассеивания')
+#
+# ax[1, 0].bar(x,y1, color='green')
+# ax[1, 0].set_title('Столбчатая диаграмма')
+#
+# ax[1, 1].hist(np.random.random(100), bins=15, color='purple')
+# ax[1, 1].set_title('Гистограмма')
 
-profit = [120, 150, 90, 210, 180, 250]
+# plt.show()
+# plt.savefig('chart.png')
+# plt.savefig('chart_3.png', dpi=300, bbox_inches='tight', facecolor='none', edgecolor='none')
+# plt.savefig('chart_5.pdf', bbox_inches='tight')
+# plt.savefig('chart_6.svg', bbox_inches='tight')
+# plt.savefig('chart_7.jpeg, dpi=300, bbox_inches='tight')
 
-fig, ax = plt.subplots()
-ax.set_ylabel('Прибыль, тыс. руб.')
-ax.set_title('Динамика прибыли за 1 полугодие', fontsize = 16, fontweight='bold') # добавлен заголовок
+# import matplotlib.pyplot as plt
+# import seaborn as sns
+# sns.set_theme(style="darkgrid", context="talk")
+# tips = sns.load_dataset("tips")
+# print(tips.head())
+#
+# # datsets = sns.get_dataset_names()
+# # print(datsets)
+#
+# plt.figure(figsize=(10,5))
+# sns.histplot(data=tips, x='total_bill', bins=30)
+# plt.title('Распределение счетов')
+# plt.xlabel('Общая сумма счета($)', fontsize=11)
+# plt.ylabel('Чаевые($)', fontsize=11)
+#
+# plt.show()
 
-ax.set_xticks(month)
-ax.set_xticklabels(['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь'])
 
-ax.plot(month,profit, color='violet', linewidth=3 )
-ax.plot(6, 250, marker='o', markersize=12, color='red', linestyle='None')
+##28.10
+#
+# import matplotlib.pyplot as plt
+# import seaborn as sns
 
-plt.show()
+# tips = sns.load_dataset("tips")
+# print(tips.head())
+#
+# plt.figure(figsize=(10, 6))
+# # sns.boxplot(tips, x="day", y="total_bill")
+# sns.boxenplot(tips, x="day", y="total_bill",
+#               palette = 'viridis',
+#               linewidth=2,
+#               width=0.8,
+#               k_depth='proportion',
+#               order=["Fri", "Sat", "Sun",'Thur']
+#               )
+#
+# plt.title('Распределение счетов по дням')
+# plt.xlabel('День недели', fontsize=11)
+# plt.ylabel('Общая сумма счета ($)', fontsize=11)
+# plt.grid(alpha=0.3)
+#
+# plt.show()
+#
+# sns.scatterplot(data=tips, x="total_bill", y="tip", hue='smoker')
+# plt.title('Зависимость чаевых от счета')
+
+
+# corr_matrix = tips.corr(numeric_only=True)
+# sns.heatmap(corr_matrix, annot=True,cmap="coolwarm", fmt='.2f') #подписали значения через annot=True
+# plt.title("Корреляционная матрица")
+#
+# plt.show()
+#
+# import matplotlib.pyplot as plt
+# import seaborn as sns
+
+# iris = sns.load_dataset("iris")
+# print(iris.head())
+#
+# sns.pairplot(iris, hue="species")
+# plt.show()
+
+# titanic = sns.load_dataset("titanic")
+# print(titanic.head())
+#
+# plt.figure(figsize=(10,6))
+#
+# sns.countplot(data=titanic, x='class', hue='survived')
+# plt.title('Выживаемость по классам')
+#
+# plt.show()
+
+
+
+# import matplotlib.pyplot as plt
+# import seaborn as sns
+# import numpy as np
+
+# tips = sns.load_dataset("tips")
+# print(tips.head())
+# # plt.figure(figsize=(10,6))
+# # sns.violinplot(data=tips, x="day", y="total_bill", palette='husl', hue='day')
+# # plt.title('Распределение счетов(violin plot)')
+# # plt.show()
+#
+# # sns.barplot(x='day', y ='total_bill', data=tips, estimator=np.mean)
+# # plt.title('Средний счет по дням')
+#
+# sns.kdeplot(data=tips, x='total_bill', fill=True, hue='smoker',alpha=0.8, palette='Set2')
+# plt.figure(figsize=(10,6))
+# # plt.title('Плотность распределения счетов')
+# plt.title('Распределение счетов: курящие vs некурящие')
+# plt.xlabel('Сумма счета')
+# plt.ylabel('Плотность')
+# plt.grid(alpha=0.3)
+# plt.show()
+
+
+
+# import matplotlib.pyplot as plt
+# import pandas as pd
+# import seaborn as sns
+# import numpy as np
+
+# tips= sns.load_dataset("tips")
+# print(tips.head())
+#
+# fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(14,10))
+#
+# sns.histplot(data=tips, x='total_bill', ax=axes[0,0], color='skyblue')
+# axes[0,0].set_title('Гистограмма счетов')
+#
+# sns.boxplot(data=tips, x='day', y='total_bill', ax=axes[0,1])
+# axes[0,1].set_title('Ящики по дням')
+#
+# sns.scatterplot(data=tips, x='total_bill', y='tip',hue='smoker', ax=axes[1,0])
+# axes[1,0].set_title('Рассеивание: счет vs чаевых')
+#
+# sns.barplot(data=tips, x='day', y='total_bill', ax=axes[1,1])
+# axes[1,1].set_title('Средний счет по дням')
+#
+# plt.show()
+
+# df = pd.DataFrame({
+#     'sales': np.random.normal(100, 20, 200),
+#     "region": np.random.choice(['Север','Юг', 'Восток','Запад'],200),
+#     'month': np.random.choice(['Январь', 'Февраль','Март','Апрель'], 200),
+#
+# })
+#
+# print(df)
+#
+# fig, ax = plt.subplots(1,3,figsize=(15,5))
+# sns.histplot(df['sales'], ax=ax[0], color='green')
+# ax[0].set_title('Распределение продаж')
+#
+# sns.boxplot(data=df, x='region', y='sales', ax=ax[1])
+# ax[1].set_title('Продажи по регионам')
+#
+# sns.barplot(data=df, x='month', y='sales', ax=ax[2],estimator=np.sum)
+# ax[2].set_title('Суммарные продажи по месяцам')
+# plt.show()
+
+
+# import matplotlib.pyplot as plt
+# import pandas as pd
+# import seaborn as sns
+# import numpy as np
+#
+# n_rows = 1000
+# data_marketing = pd.DataFrame({
+#     'Source': np.random.choice(['Google Ads', 'Target Ads', 'Influenxers'], n_rows, p=[0.5,0.3,0.2]),
+#     'Lifetime_Months':np.random.geometric(p=0.25, size=n_rows)
+# })
+# print(data_marketing)
+# data_marketing['Life_Months'] = data_marketing['Lifetime_Months'].clip(upper=12)
+#
+# plt.figure(figsize=(10,5))
+# sns.set_theme(style='whitegrid')
+#
+# sns.kdeplot(data=data_marketing, x ='Lifetime_Months', hue='Source', fill=True, alpha=0.4, linewidth=2, palette='muted')
+# plt.title('Как быстро уход клиенты в зав-ти от рекламного источника')
+# plt.xlabel('Месяцы с момента первой покупки')
+# plt.ylabel('Плотность (доля клиентов)')
+# plt.xlim(1,12)
+# plt.show()
+
+# import matplotlib.pyplot as plt
+# import pandas as pd
+# import seaborn as sns
+# import numpy as np
+#
+# days=['Пн', 'Вт','Ср','Чт','Пт','Сб','Вс']
+# hours = [f'{h:02d}:00' for h in range(8,23)]
+# grid = []
+#
+# for day in days:
+#     for hour in hours:
+#         base_order = np.random.randint(20,60)
+#         if day in ['Пт','Сб'] and int(hour[:2]) >= 18:
+#             base_order += 80
+#         if day in ['Сб','Вс'] and 12 <= int(hour[:2]) <= 15:
+#             base_order += 60
+#
+#         grid.append({'Day':day,'Hour':hour,'Order': base_order})
+#
+# df_orders = pd.DataFrame(grid)
+#
+# pivot_orders = df_orders.pivot(index='Day', columns='Hour', values='Order').reindex(days)
+# print(pivot_orders)
+#
+# plt.figure(figsize=(12,15))
+#
+# sns.heatmap(pivot_orders, annot=True, cmap='YlOrRd', fmt='d', linewidths=.5, cbar_kws={'label':" Количество заказов"})
+# plt.title('Почасовая интенсивность заказов в течении недели', fontsize=14, pad=15)
+# plt.xlabel('Час суток', fontsize=12)
+# plt.ylabel('День недели', fontsize=12)
+#
+# plt.xticks(rotation=30)
+# plt.tight_layout()
+# plt.show()
+
+
+# import matplotlib.pyplot as plt
+# import pandas as pd
+# import seaborn as sns
+# import numpy as np
+#
+#
+# n_users = 400
+# data_ab = pd.DataFrame({
+#     'Group':np.random.choice(['A(Старый)', 'В (Новый)'], n_users, p=[0.5,0.5]),
+#     'OS':np.random.choice(['IOS', 'Android'], n_users, p=[0.4,0.6]),
+#     'SessionDuration': np.random.normal(loc=12, scale=4, size=n_users),
+# })
+# data_ab.loc[data_ab['Group'] == 'В (Новый)', 'SessionDuration'] += 2.5
+#
+# plt.figure(figsize=(10,6))
+# sns.violinplot(data=data_ab, x='Group', y='SessionDuration', hue='OS', split=True, inner='quart', palette='muted')
+#
+# plt.title('Результаты A/B теста: Длительность сессии по группам и ОС', fontsize=14, pad=10)
+# plt.grid()
+# plt.xlabel('Группа теста')
+# plt.ylabel('Длительность сессии в минутах')
+# plt.show()
+
+# import matplotlib.pyplot as plt
+# import pandas as pd
+# import seaborn as sns
+# import numpy as np
+#
+# n_borrowers = 2000
+# jobs = ['Freelance', 'State Employee', 'Corporate', 'Business Owner']
+# df_credit = pd.DataFrame({
+#     'Employment': np.random.choice(jobs, n_borrowers, p=[0.2, 0.3, 0.4, 0.1]),
+#     'Credit_Score': np.random.normal(loc=650 , scale=70, size=n_borrowers),
+# })
+#
+# df_credit.loc[df_credit['Employment'] == 'Corporate','Credit_Score' ] += 45
+# df_credit.loc[df_credit['Employment'] == 'Freelance','Credit_Score' ] -= 30
+# df_credit['Credit_Score'] = df_credit['Credit_Score'].clip(300,850)
+#
+# print(df_credit.head())
+#
+# plt.figure(figsize=(10,6))
+#
+# sns.boxenplot(data=df_credit, x='Employment', y='Credit_Score', palette='coolwarm', hue='Employment')
+# plt.title('Распределение кредитного рейтинга заемщиков по типам занятости')
+# plt.xlabel('Тип занятости')
+# plt.ylabel('Кредитный рейтинг')
+# plt.show()
+
+
+#---------------------------------------------------
+#31.10 plotly
+#
+# import plotly.express as px
+# from plotly.graph_objs.layout.geo import projection
+
+# data = {
+#     'Месяц': ['Ян', 'Фев', 'Мар', 'Апр'],
+#     'Температура': [-5,-3,2,10]
+# }
+#
+# fig = px.line(data, x='Месяц', y='Температура', title='средняя температура')
+# fig.write_html('Температура.html')
+# fig.write_image('Температура.png')
+# # fig.show()
+#
+# data = {
+#     'Категория': ['Продукты', 'Транспорт', 'Развлечения'],
+#     'Расходы': [5000,3000, 2000]
+#
+# }
+#
+# fig = px.bar(data, x= 'Категория', y='Расходы', title='Расходы за месяц', color='Категория', color_discrete_map={'Продукты': 'orange', 'Транспорт':'green', 'Развлечения':'yellow'})
+# fig.update_traces(textposition='outside', texttemplate='%{y} Руб')
+# fig.show()
+
+
+# fig = px.funnel_area(names=['A', 'B', 'C'], values=[10,20,30], title='Площадь воронки')
+# fig.show()
+
+# df = px.data.iris()
+#
+# # fig = px.scatter(df, x="sepal_width", y="sepal_length", color="species", title='Точечный график')
+# # fig = px.scatter_3d(df, x="sepal_width", y="sepal_length",z='petal_length' ,color="species", title='3D Точечный график')
+# # fig = px.scatter_polar(df, r="sepal_length", theta='sepal_width', color="species", title='Полярный график')
+# fig = px.scatter_ternary(df, a="sepal_length", b='sepal_width',c='petal_length', color="species", title='Тернарный график')
+# fig.show()
+#
+#
+# df = px.data.gapminder()
+# fig = px.scatter_geo(df, locations='iso_alpha', color='continent',hover_name='country',size='pop', projection='natural earth',title='Географический график' )
+#
+# fig.show()
+
+
+
+# df = px.data.gapminder()
+# fig = px.bar_polar(df, r='pop', theta='continent',color='continent',title='Полярный столбчатый гарфик' )
+# fig.show()
+
+
+# df = px.data.gapminder()
+# fig = px.box(df, x='continent',y= 'lifeExp', color='continent',title='Коробчатый график' )
+# fig.show()
+
+#
+# df = px.data.gapminder()
+#
+# selected_year = 2007
+# df_year = df[df['year'] == selected_year]
+# df_continent = df_year.groupby(['continent']).agg({'pop': 'sum'}).reset_index()
+# df_continent['percentage'] = (df_continent['pop'] / df_continent['pop'].sum()) * 100
+#
+# fig = px.pie(df_continent, values='pop', names='continent', title=f'Распределение населения по континентам в {selected_year}году', color='continent', color_discrete_sequence=px.colors.qualitative.Set3, hole=0.4, labels={'continent': 'Континент', 'pop':'Население'})
+# fig.update_traces(textposition='inside', textinfo='percent + label')
+# fig.update_layout(showlegend=True, legend_title_text='Континент', margin=dict(l=20, r=20, t=80, b=20))
+#
+# fig.show()
+#
+
+
+# df = px.data.gapminder()
+# fig = px.sunburst(df, path=['continent', 'country'], values='pop', title='Круговая иерархия')
+# fig.show()
+#
+# df = px.data.gapminder()
+# selected_year = 2007
+# df_year = df[df['year'] == selected_year]
+#
+# print(df_year.head())
+#
+# fig = px.treemap(df_year,path=['continent', 'country'], values='pop', color='lifeExp', hover_data=['gdpPercap'], color_continuous_scale='RDbU', title=f'Иеррхическое дерево по странам и континентам в {selected_year} году')
+# fig.update_layout(margin=dict(t=50, r=25, l=25, b=25))
+# fig.show()
+#
+#
+# df = px.data.gapminder().query('year == 2007')
+#
+# fig= px.choropleth(df, locations='iso_alpha', color='gdpPercap', hover_name='country', color_continuous_scale=px.colors.sequential.YlOrRd )
+#
+# fig.update_layout(title='world GPA per Capite (2007)', geo_scope='world')
+# fig.show()
+# fig.show()
+
+
+#временная шкала диаграмма Ганта
+# import plotly.express as px
+# import pandas as pd
+# from plotly.graph_objs.layout.scene import xaxis
+
+# data = {
+#     'Event': [
+#         'Начало второй мировой войны',
+#         'Распад СССР',
+#         'Первый человек в космосе',
+#         'Создание интернета',
+#         'Введение евро',
+#         'Начало COVID-19 пандемии',
+#         'Разработка вакцин против COVID-19'
+#     ],
+#     'Start': [
+#         '1939-09-01',
+#         '1990-03-11',
+#         '1961-04-12',
+#         '1983-01-01',
+#         '1999-01-01',
+#         '2020-01-01',
+#         '2020-12-01'
+#     ],
+#     'End': [
+#         '1945-09-02',
+#         '1991-12-25',
+#         '1969-07-24',
+#         '1990-01-01',
+#         '1999-01-01',
+#         '2023-01-01',
+#         '2021-12-31',
+#     ],
+#     'Category': [
+#         'Война',
+#         'Политика',
+#         'Космос',
+#         'Технологии',
+#         'Экономика',
+#         'Здоровье',
+#         'Здоровье'
+#     ],
+#     'Description': [
+#         'Второй мировой конфликт, начавшийся с нападения Германии на Польшу',
+#         'Событие, символирующее конец Хлоддной войны',
+#         'Нил Амстронг стал первым человеком ступившим на Луну',
+#         'Начало разработки глобальной сети свяязи',
+#         'Введение единой валюты во многих европейских странах',
+#         'Глобальная пандемия, вызванная вирусом',
+#         'Создание и внедрение вакцин для борьбы с COVID-19'
+#     ]
+#
+# }
+# df = pd.DataFrame(data)
+#
+# df['Start'] = pd.to_datetime(df['Start'])
+# df['End'] = pd.to_datetime(df['End'])
+#
+# fig = px.timeline(df, x_start='Start', x_end='End', y='Event', color='Category', title='Временная шкала ключевых исторических событий', labels={'Event':'Cобытия', 'Category':'Категория'}, hover_data={'Description': True, 'Start':False, 'End':False})
+#
+# fig.update_yaxes(autorange='reversed') #разворот сверху вниз ось y
+# fig.update_layout(bargap=0.12, xaxis_title='Дата', margin={'l':200, 'r':50, 'b':0, 't':100}) # отступы между горизонтальными полосами событий
+#
+#
+#
+# fig.show()
+
+
+
+#-------01.11
+
+
+import plotly.express as px
+
+df = px.data.gapminder()
+
+fig = px.bar(df, x='continent', y='pop',animation_frame='year', color='continent',title='Население по контнентам')
+
+fig.show()
+# fig.write_html('animated_chart.html')
+
+
+
+
+# df = px.data.gapminder()
+# fig = px.scatter_geo(df, locations='iso_alpha', projection='orthographic', color='continent', hover_name='country', size='pop') #аннимаци карта -> глобус
+#
+# fig.show()
+
+
+#-------Дашборды
+from dash import Dash, html
+
